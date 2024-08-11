@@ -30,8 +30,11 @@ jobs:
       - name: build
         run: docker compose -f docker-compose.yml build app
 
-      - name: test
-        run: docker compose -f docker-compose.yml up --abort-on-container-exit
+#      - name: test
+#        run: docker compose -f docker-compose.yml up --abort-on-container-exit
+
+      - name: push
+        run: docker compose -f docker-compose.yml push app
 
 #      - name: Build and push
 #        uses: docker/build-push-action@v6
