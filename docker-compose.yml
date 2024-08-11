@@ -1,8 +1,8 @@
-version: "3"
+version: "3.8"
 
 services:
   app:
-    image: valentinoneone/devops-for-programmers-project-74
     build:
       context: .
       dockerfile: Dockerfile.production
+    command: [ "npm", "test" ]

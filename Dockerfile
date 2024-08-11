@@ -1,5 +1,1 @@
-FROM node:20.12.2
-
-WORKDIR /app
-
-CMD ["make", "test"]
+FROM node:14.18.1
