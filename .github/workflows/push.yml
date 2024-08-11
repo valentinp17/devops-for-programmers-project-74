@@ -27,11 +27,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: test
-        run: make ci
+      - name: build
+        run: docker compose -f docker-compose.yml build app
 
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: valentinoneone/devops-for-programmers-project-74:latest
+      - name: test
+        run: docker compose -f docker-compose.yml up --abort-on-container-exit
+
+#      - name: Build and push
+#        uses: docker/build-push-action@v6
+#        with:
+#          push: true
+#          tags: valentinoneone/devops-for-programmers-project-74:latest
