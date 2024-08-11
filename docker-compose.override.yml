@@ -16,8 +16,8 @@ services:
     restart: unless-stopped
     depends_on: [app]
     expose:
-      - "80:80"
-      - "443:443"
+      - 80
+      - 443
     volumes:
       - $PWD/services/caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
