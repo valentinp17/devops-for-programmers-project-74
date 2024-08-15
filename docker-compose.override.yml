@@ -1,12 +1,13 @@
 services:
   app:
-    build:
-      context: .
-    ports:
-      - 8080:8080
-    command: ["make", "dev"]
+    build: .
     volumes:
       - ./app:/app
+    environment:
+      NODE_ENV: 'development'
+    entrypoint: make dev
+    ports:
+      - 8080:8080
 
   caddy:
     image: caddy:2.6
@@ -17,9 +18,3 @@ services:
       - "80:80"
     volumes:
       - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-
-volumes:
-  caddy_data:
-  caddy_config:

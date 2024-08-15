@@ -8,12 +8,10 @@ name: push
 on:
   push:
     branches:
-      - '**'
-    tags:
-      - '**'
+      - main
 
 env:
-  DOCKERHUB_USERNAME: valentinoneone
+  IMAGE_NAME: valentinoneone/devops-for-programmers-project-74
   DATABASE_NAME: postgres
   DATABASE_USERNAME: postgres
   DATABASE_PASSWORD: postgres
@@ -37,8 +35,12 @@ jobs:
         run: |
           make app-test
 
-      - name: Build and push
+      - name: Push image
         uses: docker/build-push-action@v6
         with:
+          context: .
+          file: Dockerfile.production
+          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}
+          cache-to: type=inline
           push: true
-          tags: ${{ env.DOCKERHUB_USERNAME }}/devops-for-programmers-project-74:latest
+          tags: ${{ env.IMAGE_NAME }}:latest
