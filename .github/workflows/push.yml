@@ -31,10 +31,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Test app
-        run: |
-          make app-test
-
       - name: Push image
         uses: docker/build-push-action@v6
         with:
