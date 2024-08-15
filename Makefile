@@ -1,14 +1,14 @@
-build:
-	docker compose -f docker-compose.yml build app
+app-setup:
+	docker compose run --rm app make setup
 
-start:
-	docker-compose up
+test:
+	docker compose run --rm make test
 
-ci:
-	docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+dev:
+	docker compose up --abort-on-container-exit
 
 push:
-	docker-compose -f docker-compose.yml push app
+	docker compose push app
 
 
 .PHONY: build

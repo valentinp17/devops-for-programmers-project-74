@@ -12,6 +12,9 @@ on:
     tags:
       - '**'
 
+env:
+  DOCKERHUB_USERNAME: valentinoneone
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,8 +30,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: build
-        run: docker compose -f docker-compose.yml build app
+      - name: Test app
+        run: |
+          make test
 
-      - name: push
-        run: docker compose -f docker-compose.yml push app
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ${{ DOCKERHUB_USERNAME }}/devops-for-programmers-project-74:latest
