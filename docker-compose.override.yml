@@ -7,7 +7,7 @@ services:
       - 8080:8080
     command: ["make", "dev"]
     volumes:
-      - $PWD/app:/app
+      - ./app:/app
 
   caddy:
     image: caddy:2.6
