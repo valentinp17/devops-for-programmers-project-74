@@ -32,7 +32,7 @@ jobs:
 
       - name: Test app
         run: |
-          make test
+          make app-test
 
       - name: Build and push
         uses: docker/build-push-action@v6
